@@ -1,6 +1,6 @@
 /*
 
-    Create by SKIF4A -> https://github.com/evilSKIF4A
+  Create by SKIF4A -> https://github.com/evilSKIF4A
 
 */
 
@@ -18,13 +18,11 @@ const snake = {
   teil: [],
   startTail: 4,
 };
-
 const eat = {
-  x: randomСoordinates(20) * box,
-  y: randomСoordinates(15) * box,
+  x: randomCoordinates(20) * box,
+  y: randomCoordinates(15) * box,
 };
-
-function randomСoordinates(num) {
+function randomCoordinates(num) {
   return Math.floor(Math.random() * num);
 }
 
@@ -46,8 +44,8 @@ function game() {
     context.fillRect(teil.x, teil.y, box, box);
     if (teil.x === eat.x && teil.y === eat.y) {
       snake.startTail++;
-      eat.x = randomСoordinates(20) * box;
-      eat.y = randomСoordinates(15) * box;
+      eat.x = randomCoordinates(20) * box;
+      eat.y = randomCoordinates(15) * box;
       countApple.textContent = parseInt(countApple.textContent) + 1;
     }
     for (var i = index + 1; i < snake.teil.length; i++) {
@@ -66,8 +64,8 @@ function game() {
         snake.startTail = 4;
         dx = box;
         dy = 0;
-        eat.x = randomСoordinates(20) * box;
-        eat.y = randomСoordinates(15) * box;
+        eat.x = randomCoordinates(20) * box;
+        eat.y = randomCoordinates(15) * box;
         countApple.textContent = 0;
       }
     }
@@ -76,23 +74,16 @@ function game() {
 setInterval(game, 100);
 
 document.addEventListener("keydown", function (e) {
-  // Cтрелка влево
   if (e.which === 37 && dx === 0) {
     dx = -box;
     dy = 0;
-  }
-  // Стрелка вверх
-  else if (e.which === 38 && dy === 0) {
+  } else if (e.which === 38 && dy === 0) {
     dy = -box;
     dx = 0;
-  }
-  // Стрелка вправо
-  else if (e.which === 39 && dx === 0) {
+  } else if (e.which === 39 && dx === 0) {
     dx = box;
     dy = 0;
-  }
-  // Стрелка вниз
-  else if (e.which === 40 && dy === 0) {
+  } else if (e.which === 40 && dy === 0) {
     dy = box;
     dx = 0;
   }
