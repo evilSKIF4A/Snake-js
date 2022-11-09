@@ -15,7 +15,7 @@ var dy = 0;
 const snake = {
   x: box * 5,
   y: box * 5,
-  teil: [],
+  tail: [],
   startTail: 4,
 };
 const eat = {
@@ -31,26 +31,26 @@ function game() {
   snake.x += dx;
   snake.y += dy;
 
-  snake.teil.unshift({ x: snake.x, y: snake.y });
-  if (snake.teil.length > snake.startTail) {
-    snake.teil.pop();
+  snake.tail.unshift({ x: snake.x, y: snake.y });
+  if (snake.tail.length > snake.startTail) {
+    snake.tail.pop();
   }
 
   context.fillStyle = "red";
   context.fillRect(eat.x, eat.y, box, box);
 
   context.fillStyle = "green";
-  snake.teil.forEach((teil, index) => {
-    context.fillRect(teil.x, teil.y, box, box);
-    if (teil.x === eat.x && teil.y === eat.y) {
+  snake.tail.forEach((tail, index) => {
+    context.fillRect(tail.x, tail.y, box, box);
+    if (tail.x === eat.x && tail.y === eat.y) {
       snake.startTail++;
       eat.x = randomCoordinates(20) * box;
       eat.y = randomCoordinates(15) * box;
       countApple.textContent = parseInt(countApple.textContent) + 1;
     }
-    for (var i = index + 1; i < snake.teil.length; i++) {
+    for (var i = index + 1; i < snake.tail.length; i++) {
       if (
-        (teil.x === snake.teil[i].x && teil.y === snake.teil[i].y) ||
+        (tail.x === snake.teil[i].x && tail.y === snake.tail[i].y) ||
         !(
           snake.x >= 0 &&
           snake.x < canvas.width &&
@@ -60,7 +60,7 @@ function game() {
       ) {
         snake.x = box * 5;
         snake.y = box * 5;
-        snake.teil = [];
+        snake.tail = [];
         snake.startTail = 4;
         dx = box;
         dy = 0;
